@@ -1,0 +1,41 @@
+---
+title: "Tunisian Monuments"
+author: "bechir ben gouissem"
+date: "08-09-2020"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Instructions
+
+Create a web page using R Markdown that features a map created with Leaflet. Host your webpage on either GitHub Pages, RPubs, or NeoCities.  
+Your webpage must contain the date that you created the document, and it must contain a map created with Leaflet. We would love to see you show off your creativity!
+
+## Review criteria
+The rubric contains the following two questions:
+  1. Does the web page feature a date and is this date less than two months before the date that you're grading this assignment?
+  2. Does the web page feature an interactive map that appears to have been created with Leaflet?
+
+## Map
+Hover to the spots and link to the website of these fun attraction sites!
+
+
+System date: "`r Sys.Date()`"
+
+```{r, echo = F}
+library(leaflet)
+tourSpot <- data.frame(lat = c(36.8093860000, 35.3000000, 	36.851829926, 36.7972, 33.8149361111),
+                       lng = c(10.1345080000, 10.7166700, 10.320498718, 10.1711,  10.8586916667))
+tourSites <- c(
+  "<a href='http://www.bardomuseum.tn/'>Bardo Museum</a>",
+  "<a href='http://www.patrimoinedetunisie.com.tn/fr/monuments/amphi_eljem.php'>El Jamm Theater </a>",
+  "<a href='https://www.tripadvisor.fr/Attraction_Review-g293754-d1943472-Reviews-Saint_Louis_Cathedral-Carthage_Tunis_Governorate.html'>Carthage Minster</a>",
+  "<a href='http://www.patrimoinedetunisie.com.tn/fr/monuments/ezzitouna.php'>Zitouna Mosque</a>",
+  "<a href='hhttps://www.tripadvisor.fr/Attraction_Review-g297941-d477280-Reviews-El_Ghriba_Synagogue-Djerba_Island_Medenine_Governorate.html'>Ghriba Synagogue</a>"
+)
+tourSpot %>% leaflet() %>% addTiles() %>% addMarkers(popup = tourSites)
+```
